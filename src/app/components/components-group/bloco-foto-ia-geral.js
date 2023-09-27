@@ -125,13 +125,13 @@ function UploadLink({ children, onChange }) {
 
 const TextInvalid = styled.span`
     color: red;
-    gap:5px;
+    gap:6px;
     display: flex;
 `;
 
 const TextValid = styled.span`
     color: green;
-    gap:5px;
+    gap:6px;
     display: flex;
 `;
 
