@@ -1,106 +1,101 @@
-"use client"
-    import React, { useState } from 'react';
-    import styled from 'styled-components';
+"use client";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
 
-    const Container = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: ${props => props.extended ? '#0046c0' : '#01a1fd'};
-    color: ${props => props.extended ? 'white' : 'white'};
-    font-weight: ${props => props.extended ? '500' : '300'};
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-    border-radius: ${props => props.extended ? '10px' : '10px'};
-    margin-left: 50px; /* Ajuste o valor conforme necessário */
-    transform: translateX(${props => props.extended ? '0' : '0'});
-    margin-bottom: 0.5em;
-    opacity: ${props => props.opacity};
-    `;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${props => props.extended ? '#0046c0' : '#01a1fd'};
+  color: white;
+  font-weight: ${props => props.extended ? '500' : '300'};
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border-radius: 10px;
+  margin-left: 50px;
+  transform: translateX(${props => props.extended ? '0' : '0'});
+  margin-bottom: 0.5em;
+  opacity: ${props => props.opacity};
+`;
 
-    const Texto = styled.p`
-    margin-left: 1em;
-    flex: 1; /* Permite que o texto ocupe todo o espaço disponível */
-    `;
 
-    const Botoes = styled.div`
-    display: flex;
-    align-items: center;
-    margin-left: 10px; /* Ajuste o valor conforme necessário */
-    `;
+const Texto = styled.p`
+  margin-left: 1em;
+  flex: 1;
+`;
 
-    const Botao = styled.button`
-    margin-right: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: ${props => props.corBotao || 'white'};
-    font-size: 24px; /* Ajuste o tamanho da fonte conforme necessário */
-    &:hover {
-    color: ${props => props.hoverColor || 'white'}; /* Define a cor do hover */
+const Botao = styled.button`
+  background: ${props => props.disabled ? '#c8c3c3' : '#0046c0'};
+  color: ${props => props.disabled ? '#000' : '#ffffff'};
+  text-align: center;
+  font-weight: ${props => props.disabled ? '300' : 'bold'};
+  padding: 1em 3em;
+  margin: 2.5em auto 1em auto;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  opacity: ${props => props.disabled ? '0.7' : '1'}; // Opacidade condicional
+`;
+
+
+
+
+const SelecaoOpcoes = ({ handleButtonClick }) => {
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleSelectOption = (texto) => {
+    if (selectedOptions.includes(texto)) {
+      setSelectedOptions(selectedOptions.filter((option) => option !== texto));
+    } else {
+      setSelectedOptions([...selectedOptions, texto]);
     }
-    `;
+  };
 
-    const CaixaTexto = ({ texto }) => {
-    const [extended, setExtended] = useState(false);
-    const [corBotaoX, setCorBotaoX] = useState('white');
-    const [corBotaoCorreto, setCorBotaoCorreto] = useState('white');
 
-    const handleSelecionar = (selecionado) => {
-        if (selecionado) {
-        setCorBotaoCorreto('green');
-        setCorBotaoX('white');
-        } else {
-        setCorBotaoX('red');
-        setCorBotaoCorreto('white');
-        }
-    };
+  const isButtonEnabled = selectedOptions.length >= 6;
 
-    const handleClick = () => {
-        setExtended(true);
-    };
+  const frases = [
+    "Reparo de câmaras de ar",
+    "Substituição ou regulagem de selim e canote de selim",
+    "Substituição e regulagem manetes de freio dianteiro e traseiro",
+    "Substituição ou regulagem de freio dianteiro e traseiro",
+    "Lubrificação de correntes e coroas",
+    "Transporte do segurado e Bike - limite de 50km caso de acidente",
+    "Transporte do segurado e Bike - limite de 150km caso de acidente",
+    "Instalação de suporte de parede e chão para a Bike",
+    "Serviço de leva e traz com limite de 50km - agendamento prévio"
+  ];
 
-    const handleFechar = () => {
-        setExtended(false);
-    };
-
-    const handleBotaoXClick = () => {
-        handleSelecionar(false);
-        setTimeout(handleFechar, 1500); // Define um atraso de 1 segundo antes de fechar a caixa
-    };
-
-    const opacidade = extended ? 0.9 : 0.7;
-
-    return (
+  return (
+    <div>
+      {frases.map((frase, index) => (
         <Container
-        extended={extended}
-        onClick={handleClick}
-        opacity={opacidade}
+          key={index}
+          extended={selectedOptions.includes(frase)}
+          opacity={selectedOptions.includes(frase) ? 0.9 : 0.7}
+          onClick={() => handleSelectOption(frase)}
         >
-        <Texto>{texto}</Texto>
-        {extended && (
-            <Botoes>
-            <Botao
-                onClick={handleBotaoXClick}
-                corBotao={corBotaoX}
-                hoverColor="red" // Define a cor do hover para vermelho
-            >
-                ✖
-            </Botao>
-            <Botao
-                onClick={() => handleSelecionar(true)}
-                corBotao={corBotaoCorreto}
-                hoverColor="green" // Define a cor do hover para verde
-            >
-                ✔
-            </Botao>
-            </Botoes>
-        )}
+          <Texto>{frase}</Texto>
         </Container>
-    );
-    };
+      ))}
+<Link href="/seguros">
+  <Botao
+    disabled={!isButtonEnabled}
+    onClick={handleButtonClick}
+  >
+    Ir para Seguros
+  </Botao>
+</Link>
+    </div>
+  );
+};
 
-    export default CaixaTexto;
+export default SelecaoOpcoes;
+
+
 
 
 
