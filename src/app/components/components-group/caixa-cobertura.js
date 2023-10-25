@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import SugestaoSeguro from './sugestao-seguro';
 import { StyleSheetManager } from 'styled-components';
 
 const Titulo = styled.h1`
