@@ -7,7 +7,7 @@ export default function CoberturasAutomatizadas() {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   useEffect(() => {
-    setIsButtonEnabled(false); // Mantenha o botão desabilitado por padrão
+    setIsButtonEnabled(false); 
   }, []);
 
   const handleButtonClick = () => {

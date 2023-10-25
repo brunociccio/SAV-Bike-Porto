@@ -2,6 +2,45 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import SugestaoSeguro from './sugestao-seguro';
+import { StyleSheetManager } from 'styled-components';
+
+const Titulo = styled.h1`
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: normal;
+  margin: 1em 1em 1.5em 2em;
+`;
+
+const Paragrafo = styled.p`
+  font-size: 16px;
+  font-weight: 200;
+  color: #ffffff;
+  margin: 1em 8em 2em 2.5em;
+`;
+
+const Paragrafo2 = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 1.5em 2.5em;
+  border-bottom: 2px solid white;
+`;
+
+const Sublinhado = styled.span`
+  text-decoration: underline;
+`;
+
+const TextoEmNegritoAzulClaro = styled.span`
+  font-weight: bold;
+  color: #01a1fd; /* Cor azul claro */
+`;
+
+const TextoEmNegritoAzulEscuro = styled.span`
+  font-weight: bold;
+  color: #0046c0; /* Cor azul escuro */
+`;
 
 const Container = styled.div`
   display: flex;
@@ -19,7 +58,6 @@ const Container = styled.div`
   opacity: ${props => props.opacity};
 `;
 
-
 const Texto = styled.p`
   margin-left: 1em;
   flex: 1;
@@ -31,34 +69,31 @@ const Botao = styled.button`
   text-align: center;
   font-weight: ${props => props.disabled ? '300' : 'bold'};
   padding: 1em 3em;
-  margin: 2.5em auto 1em auto;
+  margin: 3em auto 1em auto;
   font-size: 16px;
   border-radius: 10px;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   font-family: 'Poppins', sans-serif;
   display: block;
-  opacity: ${props => props.disabled ? '0.7' : '1'}; // Opacidade condicional
+  opacity: ${props => props.disabled ? '0.7' : '1'};
 `;
-
-
-
 
 const SelecaoOpcoes = ({ handleButtonClick }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const handleSelectOption = (texto) => {
-    if (selectedOptions.includes(texto)) {
-      setSelectedOptions(selectedOptions.filter((option) => option !== texto));
-    } else {
-      setSelectedOptions([...selectedOptions, texto]);
-    }
+    const handleSelectOption = (texto) => {
+      if (selectedOptions.includes(texto)) {
+        setSelectedOptions(selectedOptions.filter((option) => option !== texto));
+      } else {
+        setSelectedOptions([...selectedOptions, texto]);
+      }
   };
 
-
-  const isButtonEnabled = selectedOptions.length >= 6;
+  const isButtonEnabled = selectedOptions.length >= 5;
 
   const frases = [
     "Reparo de câmaras de ar",
+    "Reparo ou troca de correntes",
     "Substituição ou regulagem de selim e canote de selim",
     "Substituição e regulagem manetes de freio dianteiro e traseiro",
     "Substituição ou regulagem de freio dianteiro e traseiro",
@@ -66,29 +101,40 @@ const SelecaoOpcoes = ({ handleButtonClick }) => {
     "Transporte do segurado e Bike - limite de 50km caso de acidente",
     "Transporte do segurado e Bike - limite de 150km caso de acidente",
     "Instalação de suporte de parede e chão para a Bike",
-    "Serviço de leva e traz com limite de 50km - agendamento prévio"
+    "Serviço de leva e traz com limite de 50km mediante agendamento prévio"
   ];
 
   return (
     <div>
-      {frases.map((frase, index) => (
-        <Container
-          key={index}
-          extended={selectedOptions.includes(frase)}
-          opacity={selectedOptions.includes(frase) ? 0.9 : 0.7}
-          onClick={() => handleSelectOption(frase)}
+      <Titulo>
+        Chegou a hora mais <Sublinhado>importante</Sublinhado>!
+      </Titulo>
+      <Paragrafo>
+        Escolha as <TextoEmNegritoAzulClaro>coberturas</TextoEmNegritoAzulClaro> que mais fazem sentido para o <TextoEmNegritoAzulEscuro>seguro</TextoEmNegritoAzulEscuro> da sua Bike!
+      </Paragrafo>
+      <Paragrafo2>Selecione pelo menos 6 opções:</Paragrafo2>
+
+      <StyleSheetManager shouldForwardProp={(prop) => prop !== 'extended'}>
+        {frases.map((frase, index) => (
+          <Container
+            key={index}
+            extended={selectedOptions.includes(frase)}
+            opacity={selectedOptions.includes(frase) ? 0.9 : 0.7}
+            onClick={() => handleSelectOption(frase)}
+          >
+            <Texto>{frase}</Texto>
+          </Container>
+        ))}
+      </StyleSheetManager>
+      
+      <Link href={{ pathname: '/seguros', query: { numCoberturas: selectedOptions.length } }}>
+        <Botao
+          disabled={!isButtonEnabled}
+          onClick={handleButtonClick}
         >
-          <Texto>{frase}</Texto>
-        </Container>
-      ))}
-<Link href="/seguros">
-  <Botao
-    disabled={!isButtonEnabled}
-    onClick={handleButtonClick}
-  >
-    Ir para Seguros
-  </Botao>
-</Link>
+          Seguro Sugerido
+        </Botao>
+      </Link>
     </div>
   );
 };
