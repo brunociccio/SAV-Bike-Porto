@@ -31,7 +31,6 @@ export default function CoberturasAutomatizadas() {
       <div>
         <SelecaoOpcoes />
       </div>
-
     </main>
   );
 }

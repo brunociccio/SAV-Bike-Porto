@@ -31,3 +31,11 @@ body {
   background-repeat: no-repeat; 
   height: 1200px;
 }
+
+.coberturas-2 {
+  background-image: url('./images/background2.jpg');
+  background-size: cover; 
+  background-position: center center; 
+  background-repeat: no-repeat; 
+  height: 1400px;
+}
