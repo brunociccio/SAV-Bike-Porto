@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import { LogoHeader } from '../components/components-group/logo-header';
-import SugestaoSeguro from '../components/components-group/sugestao-seguro';
 import SegurosPorto from '../components/bloco-seguros-porto';
-import { useEffect } from 'react';
+import TituloSeguros from '../components/components-group/titulo-seguro';
+import Footer from '../components/footer';
 
 export default function Seguros({ numCoberturas }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -27,13 +27,19 @@ export default function Seguros({ numCoberturas }) {
           srcSav="images/logosavfinal.png"
           altSav="Logo do Sav"
         />
-        <br />
-        <SugestaoSeguro numCoberturas={numCoberturas} />
-      </div>
-      <br /> <br />
+      </div>  
+      <br></br>
+
+      <TituloSeguros
+          titulo="Escolha seu seguro!"
+          imagemSrc="/images/pincelada azul.png"
+          texto="Você pode selecionar o seguro sugerido ou escolher um dos outros seguros abaixo. Clique no nome do seguro para ver mais informações, coberturas e valor."
+          
+        />
       <div>
         <SegurosPorto handleClick={handleButtonClick} />
       </div>
+      <Footer />
     </main>
   );
 }

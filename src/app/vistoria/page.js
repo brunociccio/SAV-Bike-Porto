@@ -1,11 +1,10 @@
 "use client";
-import { ParagrafoFotoIA } from "../components/paragrafo-ia";
 import { LogoHeader } from "../components/components-group/logo-header";
 import { TituloTracoAzul } from "../components/components-group/titulo-traco-azul-ia";
-import Link from 'next/link';
 import React, { useEffect, useState } from "react";
 import MeuBotao from "../components/meu-botao";
 import { BlocoFotoIAGeral } from "../components/components-group/bloco-foto-ia-geral";
+import Footer from "../components/footer";
 
 import { models} from '../const/teachableModels'
 
@@ -57,9 +56,9 @@ export default function Vistoria() {
                     tituloText="Vamos lá: chegou a hora das fotos!"
                     tracoSrc="/images/pincelada azul.png"
                     tracoAlt="Descrição da Imagem"
+                    paragrafoText="Para finalizar a primeira etapa do seu processo de vistoria, precisamos de 6 fotos específicas da sua Bike:"
                 />
             </div>
-            <ParagrafoFotoIA text="Para finalizar a primeira etapa do seu processo de vistoria, precisamos de 6 fotos específicas da sua Bike." />
             <div>
                 <BlocoFotoIAGeral
                     subtitulo="FOTO 1"
@@ -132,6 +131,7 @@ export default function Vistoria() {
                 />
             </div>
             <MeuBotao text="Enviar Fotos" href="vistoria-cobertura-auto"/>
+            <Footer />
 
         </main>
     );

@@ -1,51 +1,41 @@
-"use client"
 import React from 'react';
 import styled from 'styled-components';
 
 const Titulo = styled.h1`
-    font-size: 16px;
+    font-size: 18px;
     color: #373737;
-    font-weight: 900;
+    font-weight: bold;
     line-height: normal;
     text-align: center;
-    margin: 1em 1em 2em 1em;
+    margin: 1em;
     z-index: 1;
     position: relative;
-
-    @media (min-width: 768px) {
-        font-size: 24px;
-    }
-
-    @media (min-width: 1366px) {
-        font-size: 28px;
-    }
 `;
 
 const TracoAzul = styled.img`
     width: 100%;
     max-width: 500px;
     height: 30px;
-    background: transparent; /* Definimos o fundo da imagem como transparente */
+    background: transparent;
     position: absolute;
-    bottom: -16px; /* Ajustamos a posição vertical para colocar a imagem abaixo do título */
-    left: 50%; /* Centralizamos horizontalmente a imagem em relação ao container */
-    transform: translateX(-50%); /* Ajustamos a posição horizontal */
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 0;
-
-    @media (min-width: 768px) {
-        max-width: 600px;
-    }
-
-    @media (min-width: 1366px) {
-        max-width: 800px;
-    }
 `;
 
-export function TituloTracoAzul({ tituloText, tracoSrc, tracoAlt }) {
+const Paragrafo = styled.p`
+    font-size: 16px;
+    margin: 0 1em 1em 1em;
+    color: #373737;
+`;
+
+export function TituloTracoAzul({ tituloText, tracoSrc, tracoAlt, paragrafoText }) {
     return (
         <div style={{ position: 'relative' }}>
             <Titulo>{tituloText}</Titulo>
             <TracoAzul src={tracoSrc} alt={tracoAlt} />
+            <Paragrafo>{paragrafoText}</Paragrafo>
         </div>
     );
 }

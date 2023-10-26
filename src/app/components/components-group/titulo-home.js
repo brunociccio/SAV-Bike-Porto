@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Titulo = styled.h1`
-    font-size: 30px;
+    font-size: 26px;
     color: #373737;
     font-weight: 700;
     line-height: normal;

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { LogoHeader } from "../components/components-group/logo-header";
 import SelecaoOpcoes from "../components/components-group/caixa-cobertura";
+import Footer from "../components/footer";
 
 export default function CoberturasAutomatizadas() {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -31,6 +32,7 @@ export default function CoberturasAutomatizadas() {
       <div>
         <SelecaoOpcoes />
       </div>
+      <Footer />
     </main>
   );
 }

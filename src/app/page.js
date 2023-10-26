@@ -6,6 +6,7 @@ import VideoSavIA from "./components/components-group/videosavia";
 import { TituloHome } from "./components/components-group/titulo-home";
 import ParagrafoHome from "./components/components-group/paragrafo-home";
 import ParagrafoHome2 from "./components/components-group/paragrafo-home-2";
+import Footer from "./components/footer";
 
 export default function Home() {
     return (
@@ -45,6 +46,8 @@ export default function Home() {
         <div>
             <ParagrafoHome2 text="Biciletas com valores a partir de R$2000,00"/>
         </div>
+
+        <Footer />
     </main>
     );
 }

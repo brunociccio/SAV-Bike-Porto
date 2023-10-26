@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { StyleSheetManager } from 'styled-components';
+import SugestaoSeguro from './sugestao-seguro';
 
 const Titulo = styled.h1`
-  font-size: 20px;
+  font-size: 18px;
   color: #ffffff;
   font-weight: bold;
   line-height: normal;
@@ -14,9 +15,9 @@ const Titulo = styled.h1`
 
 const Paragrafo = styled.p`
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
   color: #ffffff;
-  margin: 1em 8em 2em 2.5em;
+  margin: 1em 3em 2em 2.5em;
 `;
 
 const Paragrafo2 = styled.p`
@@ -50,7 +51,7 @@ const Container = styled.div`
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   margin-left: 50px;
   transform: translateX(${props => props.extended ? '0' : '0'});
   margin-bottom: 0.5em;
@@ -77,19 +78,8 @@ const Botao = styled.button`
   opacity: ${props => props.disabled ? '0.7' : '1'};
 `;
 
-const SelecaoOpcoes = ({ handleButtonClick }) => {
+const SelecaoOpcoes = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-
-    const handleSelectOption = (texto) => {
-      if (selectedOptions.includes(texto)) {
-        setSelectedOptions(selectedOptions.filter((option) => option !== texto));
-      } else {
-        setSelectedOptions([...selectedOptions, texto]);
-      }
-  };
-
-  const isButtonEnabled = selectedOptions.length >= 5;
-
   const frases = [
     "Reparo de câmaras de ar",
     "Reparo ou troca de correntes",
@@ -103,6 +93,18 @@ const SelecaoOpcoes = ({ handleButtonClick }) => {
     "Serviço de leva e traz com limite de 50km mediante agendamento prévio"
   ];
 
+  const handleSelectOption = (texto) => {
+    if (selectedOptions.includes(texto)) {
+      setSelectedOptions(selectedOptions.filter((option) => option !== texto));
+    } else {
+      setSelectedOptions([...selectedOptions, texto]);
+    }
+  };
+
+  const numCoberturas = selectedOptions.length;
+  const isButtonEnabled = numCoberturas >= 5;
+  
+
   return (
     <div>
       <Titulo>
@@ -111,7 +113,7 @@ const SelecaoOpcoes = ({ handleButtonClick }) => {
       <Paragrafo>
         Escolha as <TextoEmNegritoAzulClaro>coberturas</TextoEmNegritoAzulClaro> que mais fazem sentido para o <TextoEmNegritoAzulEscuro>seguro</TextoEmNegritoAzulEscuro> da sua Bike!
       </Paragrafo>
-      <Paragrafo2>Selecione pelo menos 6 opções:</Paragrafo2>
+      <Paragrafo2>Selecione pelo menos 5 opções:</Paragrafo2>
 
       <StyleSheetManager shouldForwardProp={(prop) => prop !== 'extended'}>
         {frases.map((frase, index) => (
@@ -125,13 +127,15 @@ const SelecaoOpcoes = ({ handleButtonClick }) => {
           </Container>
         ))}
       </StyleSheetManager>
+      <br></br>
+
+      {numCoberturas >= 5 && <SugestaoSeguro numCoberturas={numCoberturas} />}
       
-      <Link href={{ pathname: '/seguros', query: { numCoberturas: selectedOptions.length } }}>
+      <Link href={{ pathname: '/seguros', query: { numCoberturas: numCoberturas } }}>
         <Botao
           disabled={!isButtonEnabled}
-          onClick={handleButtonClick}
         >
-          Seguro Sugerido
+          Ir para Seguros
         </Botao>
       </Link>
     </div>
@@ -139,6 +143,7 @@ const SelecaoOpcoes = ({ handleButtonClick }) => {
 };
 
 export default SelecaoOpcoes;
+
 
 
 

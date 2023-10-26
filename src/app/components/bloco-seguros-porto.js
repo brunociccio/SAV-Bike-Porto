@@ -12,11 +12,12 @@ const Container = styled.div`
   padding: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out, width 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   margin-left: 0;
   margin-right: ${props => props.clicked ? '50px' : '120px'};
   margin-bottom: 2em;
   font-size: 16px;
+  opacity: ${props => props.clicked ? '1' : '0.7'};
 `;
 
 const Title = styled.div`
@@ -24,16 +25,16 @@ const Title = styled.div`
   text-transform: uppercase;
   margin-top: ${props => props.clicked ? '10px' : '0'};
   align-items: ${props => props.clicked ? 'center' : 'center'};
-  text-align: center; /* Alterado para centralizar o texto */
+  text-align: center; 
   font-weight: 500;
 `;
 
 const TextBelow = styled.p`
   display: ${props => props.clicked ? 'block' : 'none'};
-  margin-left: 10px; /* Inserido espaço à esquerda de 10px para o texto */
-  white-space: pre-line; /* Permite que o texto seja dividido em várias linhas conforme necessário */
+  margin-left: 10px; 
+  white-space: pre-line; 
   align-items: ${props => props.clicked ? 'left' : 'center'};
-  text-align: left; /* Alterado para centralizar o texto */
+  text-align: left; 
   font-weight: 300;
 `;
 
@@ -69,18 +70,21 @@ const DarkBlueButton = styled(Button)`
   background-color: #0046c0;
   color: white;
   padding: 1em;
+  border-radius: 10px;
 `;
 
 const LightBlueButton = styled(Button)`
   background-color: #0046c0;
   color: white;
   padding: 1em;
+  border-radius: 10px;
 `;
 
 const RedButton = styled(Button)`
   background-color: #ff0000;
   color: white;
   padding: 1em 4.3em;
+  border-radius: 10px;
 `;
 
 const SegurosPorto = ({ handleClick }) => {
