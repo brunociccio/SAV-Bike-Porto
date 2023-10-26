@@ -50,8 +50,8 @@ const options = [
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza os botões na vertical */
-  margin-top: 1em;
+  align-items: center;
+  margin-top: 6em;
 `;
 
 const Button = styled.button`
@@ -60,7 +60,7 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 16px;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'}; /* Cursor não clicável se disabled */
-  margin: 1em 0; /* Espaçamento entre os botões */
+  margin: 0.5em 0; /* Espaçamento entre os botões */
   font-weight: bold;
   transition: background-color 0.3s ease-in-out;
   opacity: ${props => props.disabled ? '0.7' : '1'}; /* Opacidade reduzida quando desabilitado */
@@ -128,6 +128,7 @@ const SegurosPorto = ({ handleClick }) => {
         <Link href="/home">
           <RedButton disabled={!buttonsEnabled}>Cancelar Cotação</RedButton>
         </Link>
+        <br></br><br></br>
       </ButtonContainer>
     </div>
   );

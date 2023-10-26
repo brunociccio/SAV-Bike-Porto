@@ -16,7 +16,7 @@ const Paragrafo = styled.p`
   font-size: 16px;
   font-weight: 400;
   color: #000000;
-  margin: 0 1em 1em 2em;
+  margin: 1em 1em 2em 2em;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1em;

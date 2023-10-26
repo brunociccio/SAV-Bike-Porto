@@ -69,7 +69,7 @@ const Botao = styled.button`
   text-align: center;
   font-weight: ${props => props.disabled ? '300' : 'bold'};
   padding: 1em 3em;
-  margin: 3em auto 1em auto;
+  margin: 3em auto 4em auto;
   font-size: 16px;
   border-radius: 10px;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
@@ -127,7 +127,6 @@ const SelecaoOpcoes = () => {
           </Container>
         ))}
       </StyleSheetManager>
-      <br></br>
 
       {numCoberturas >= 5 && <SugestaoSeguro numCoberturas={numCoberturas} />}
       
