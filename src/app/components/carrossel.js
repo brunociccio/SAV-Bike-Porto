@@ -18,7 +18,7 @@ const CarouselItem = styled.div`
   border-radius: 10px;
   padding: 1em;
   text-align: center;
-  margin: 0 1em;
+  margin-right: 10px;
 `;
 
 const ItemImage = styled.img`
@@ -36,7 +36,7 @@ const PrevArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style, left: '-10px' }}
+      style={{ top: '120px', left: '-20px' }}
       onClick={onClick}
     >
       <img src="images/setaesquerda.png" alt="Previous" />
@@ -49,7 +49,7 @@ const NextArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style, right: '10px' }}
+      style={{ top:'120px', right: '10px' }}
       onClick={onClick}
     >
       <img src="images/setadireita.png" alt="Next" />
@@ -123,7 +123,7 @@ const Carrossel = () => {
       <CarouselWrapper>
         <Slider {...settings}>
           {items.map((item) => (
-            <CarouselItem key={item.id}>
+            <CarouselItem key={item.id} style={{margin : '20px'}}>
               <ItemImage src={item.imageUrl} alt={`Item ${item.id}`} />
               <ItemText>{item.text}</ItemText>
             </CarouselItem>

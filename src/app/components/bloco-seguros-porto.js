@@ -125,7 +125,7 @@ const SegurosPorto = ({ handleClick }) => {
             Efetivar contratação do Seguro <br></br> e Cadastrar outra Bike
           </LightBlueButton>
         </Link>
-        <Link href="/home">
+        <Link href="/">
           <RedButton disabled={!buttonsEnabled}>Cancelar Cotação</RedButton>
         </Link>
         <br></br><br></br>

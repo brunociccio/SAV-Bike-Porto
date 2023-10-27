@@ -4,9 +4,14 @@ import { LogoHeader } from '../components/components-group/logo-header';
 import SegurosPorto from '../components/bloco-seguros-porto';
 import TituloSeguros from '../components/components-group/titulo-seguro';
 import Footer from '../components/footer';
+import { useSearchParams } from 'next/navigation';
 
 export default function Seguros({ numCoberturas }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const params = useSearchParams()
+  const search = params.get('numCoberturas');
+  console.log(search);
 
   const handleButtonClick = (selectedOption) => {
     if (selectedOptions.includes(selectedOption)) {
@@ -17,6 +22,18 @@ export default function Seguros({ numCoberturas }) {
   };
 
   const isButtonEnabled = selectedOptions.length >= 5;
+
+  const mapearTexto = (num) => {
+    let seguroSugerido = '';
+    if (num >= 5 && num <= 6) {
+      seguroSugerido = 'Pedal Essencial';
+    } else if (num >= 7 && num <= 8) {
+      seguroSugerido = 'Pedal Leve';
+    } else if (num >= 9 && num <= 10) {
+      seguroSugerido = 'Pedal Elite';
+    }
+    return seguroSugerido;
+  }
 
   return (
     <main className="coberturas-2">
@@ -33,7 +50,7 @@ export default function Seguros({ numCoberturas }) {
       <TituloSeguros
           titulo="Escolha seu seguro!"
           imagemSrc="/images/pincelada azul.png"
-          texto="Você pode selecionar o seguro sugerido ou escolher um dos outros seguros abaixo. Clique no nome do seguro para ver mais informações, coberturas e valor."
+          texto={`Você pode selecionar o seguro sugerido (${mapearTexto(search)}) ou escolher um dos outros seguros abaixo. Clique no nome do seguro para ver mais informações, coberturas e valor.`}
           
         />
       <div>
