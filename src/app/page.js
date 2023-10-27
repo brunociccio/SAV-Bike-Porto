@@ -11,6 +11,7 @@ import { SubtituloFotoIA } from "./components/sub-titulo-ia";
 import Carrossel from "./components/carrossel";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import TextoCarrossel from "./components/bloco-texto-carrossel";
 
 
 export default function Home() {
@@ -45,9 +46,13 @@ export default function Home() {
             <ParagrafoHome2 text="Biciletas com valores a partir de R$2000,00"/>
         </div>
 
-        <div>
+        <div className="bloco2-home">
+            <TextoCarrossel/>
             <Carrossel/>
         </div>
+
+
+
 
         <Footer />
     </main>
