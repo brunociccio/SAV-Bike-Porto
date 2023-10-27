@@ -39,3 +39,7 @@ body {
   background-repeat: no-repeat; 
   height: 1300px;
 }
+
+.home {
+  background-color: #f6f6f6;
+}

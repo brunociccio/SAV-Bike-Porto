@@ -120,7 +120,7 @@ const SegurosPorto = ({ handleClick }) => {
         <Link href="/cadastro">
           <DarkBlueButton disabled={!buttonsEnabled}>Efetivar contratação do Seguro</DarkBlueButton>
         </Link>
-        <Link href="/vistoria">
+        <Link href="/vistoria-home">
           <LightBlueButton disabled={!buttonsEnabled}>
             Efetivar contratação do Seguro <br></br> e Cadastrar outra Bike
           </LightBlueButton>
