@@ -7,8 +7,8 @@ const ImageWithText = styled.div`
 `;
 
 const Image = styled.img`
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   display: block;
   opacity: 0.9;
 `;
