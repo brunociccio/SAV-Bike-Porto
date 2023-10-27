@@ -9,7 +9,6 @@ import FotoHome from "./components/foto-home";
 import MeuParagrafo from "./components/meu-paragrafo";
 import { SubtituloFotoIA } from "./components/sub-titulo-ia";
 import Carrossel from "./components/carrossel";
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 

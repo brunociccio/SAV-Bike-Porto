@@ -1,73 +1,79 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 
 const CarouselContainer = styled.div`
+  position: relative;
   width: 100%;
-  margin: 1em 0 2em 0;
+  z-index: 1;
+`;
+
+const CarouselNavigation = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  z-index: 2;
+`;
+
+const CarouselButton = styled.span`
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  background-position: center;
+  z-index: 3;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const CarouselWrapper = styled.div`
-  margin-left: 3em;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4em;
+  margin-left: 2em;
+  margin-top: 2em;
 `;
 
 const CarouselItem = styled.div`
-  background: #fff;
-  border-radius: 10px;
-  padding: 1em;
+  scroll-snap-align: start;
   text-align: center;
-  margin-right: 10px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  min-width: 200px; /* Defina a largura desejada para todos os itens */
+  height: 300px; /* Defina a altura desejada para todos os itens */
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5em;
+    object-fit: contain;
+  }
+
+  p {
+    text-align: center;
+  }
 `;
-
-const ItemImage = styled.img`
-  max-width: 150px;
-  height: auto;
-  border-radius: 10px;
-`;
-
-const ItemText = styled.p`
-  margin-top: 1em;
-`;
-
-const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ top: '120px', left: '-20px' }}
-      onClick={onClick}
-    >
-      <img src="images/setaesquerda.png" alt="Previous" />
-    </div>
-  );
-};
-
-const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ top:'120px', right: '10px' }}
-      onClick={onClick}
-    >
-      <img src="images/setadireita.png" alt="Next" />
-    </div>
-  );
-};
-
-const settings = {
-  dots: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 2,
-  slidesToScroll: 1,
-  centerPadding: '20px',
-  arrows: true,
-  prevArrow: <PrevArrow />,
-  nextArrow: <NextArrow />,
-};
 
 const items = [
   {
@@ -82,59 +88,90 @@ const items = [
   },
   {
     id: 3,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 3',
+    imageUrl: 'images/roubo.png',
+    text: 'Roubo',
   },
   {
     id: 4,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 4',
+    imageUrl: 'images/comprar.png',
+    text: 'Danos na tentativa de Roubo',
   },
   {
     id: 5,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 5',
+    imageUrl: 'images/bike-eletrica.png',
+    text: 'Danos causados por curto circuito na bateria de bikes elétricas',
   },
   {
     id: 6,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 6',
+    imageUrl: 'images/atencao.png',
+    text: 'Danos à bike',
   },
   {
     id: 7,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 7',
+    imageUrl: 'images/transporte.png',
+    text: 'Danos ocorridos no transporte da bike',
   },
   {
     id: 8,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 8',
+    imageUrl: 'images/aviao.png',
+    text: 'Extravio em viagens aéreas e/ou rodoviárias',
   },
   {
     id: 9,
-    imageUrl: 'images/multidao.png',
-    text: 'Texto do item 9',
+    imageUrl: 'images/globo-terrestre.png',
+    text: 'Extensão das coberturas em solo internacional',
   },
 ];
 
 const Carrossel = () => {
+  useEffect(() => {
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 2,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+
+    prevButton.addEventListener('click', function () {
+      swiper.slidePrev();
+    });
+
+    nextButton.addEventListener('click', function () {
+      swiper.slideNext();
+    });
+  }, []);
+
   return (
     <CarouselContainer>
-      <CarouselWrapper>
-        <Slider {...settings}>
+      <CarouselNavigation>
+        <CarouselButton className="carousel-prev">
+        <img src="images/setaesquerda.png" alt="Next" />
+        </CarouselButton>
+        <CarouselButton className="carousel-next">
+        <img src="images/setadireita.png" alt="Next" />
+        </CarouselButton>
+      </CarouselNavigation>
+      <CarouselWrapper className="swiper-container">
+        <div className="swiper-wrapper">
           {items.map((item) => (
-            <CarouselItem key={item.id} style={{margin : '20px'}}>
-              <ItemImage src={item.imageUrl} alt={`Item ${item.id}`} />
-              <ItemText>{item.text}</ItemText>
+            <CarouselItem key={item.id} className="swiper-slide">
+              <img src={item.imageUrl} alt={`Item ${item.id}`} />
+              <p>{item.text}</p>
             </CarouselItem>
           ))}
-        </Slider>
+        </div>
       </CarouselWrapper>
     </CarouselContainer>
   );
 };
 
 export default Carrossel;
+
 
 
 
