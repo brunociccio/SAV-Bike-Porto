@@ -12,9 +12,10 @@ import Carrossel from "./components/carrossel";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TextoCarrossel from "./components/bloco-texto-carrossel";
-
+import BlocoHome2 from "./components/bloco-home-3";
 
 export default function Home() {
+
     return (
     <main className="home">
         <div>
@@ -50,7 +51,9 @@ export default function Home() {
             <TextoCarrossel/>
             <Carrossel/>
         </div>
-
+        <div className="bloco3-home">
+            <BlocoHome2 /> {/* Adicione o BlocoHome2 aqui */}
+        </div>
 
 
 
@@ -58,5 +61,4 @@ export default function Home() {
     </main>
     );
 }
-
 

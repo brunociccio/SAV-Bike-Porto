@@ -48,4 +48,12 @@ body {
   background-color: #fff;
 }
 
+.bloco3-home {
+  background-image: url('./images/background3.jpg');
+  background-size: cover; 
+  background-position: center center; 
+  background-repeat: no-repeat; 
+  height: 900px;
+  opacity: 0.9;
+}
 

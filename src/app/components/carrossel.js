@@ -60,7 +60,7 @@ const CarouselItem = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1em;
-  min-width: 200px; /* Defina a largura desejada para todos os itens */
+  min-width: 170px; /* Defina a largura desejada para todos os itens */
   height: 300px; /* Defina a altura desejada para todos os itens */
 
   img {
