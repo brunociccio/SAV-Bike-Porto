@@ -19,14 +19,6 @@ const Button = styled.button`
         background: #ccc; // Altere para a cor desejada quando o botão estiver desabilitado
         pointer-events: none;
     }
-
-    @media (min-width: 768px) {
-        font-size: 18px;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 20px;
-    }
 `;
 
 const ButtonLink = styled.a`

@@ -7,6 +7,7 @@ import { BlocoFotoIAGeral } from "../components/components-group/bloco-foto-ia-g
 import Footer from "../components/footer";
 
 import { models} from '../const/teachableModels'
+import EnviarFotosButton from "../components/botao-validacao-ia";
 
 export default function Vistoria() {
 
@@ -131,6 +132,7 @@ export default function Vistoria() {
                 />
             </div>
             <MeuBotao text="Enviar Fotos" href="vistoria-cobertura-auto"/>
+            <EnviarFotosButton href="vistoria-cobertura-auto"/>
             <Footer />
 
         </main>

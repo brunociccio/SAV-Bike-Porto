@@ -18,6 +18,13 @@ const Title = styled.h1`
   }
 `;
 
+const TextBackground = styled.div`
+  background-color: #0349D0; 
+  border-radius: 5px; 
+  padding: 0.5em;
+  display: inline; 
+`;
+
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,9 +41,10 @@ const ImageWithTitle = styled.div`
   height: 200px;
   color: white;
   text-align: left;
-  padding: 0.5em;
+  border-radius: 10px;
+  padding: 1.2em 1em 1em 1em;
   cursor: pointer;
-  margin: 1em 0;
+  margin: 1em;
   &:hover {
     background-size: 120%;
   }
@@ -61,24 +69,24 @@ const BlocoHome2 = () => {
         A <span className='porto-sav'>Porto-SAV</span> é a sua parceira do dia a dia independente da sua necessidade!
       </Title>
       <ImageContainer>
-        {expandedContent} {/* Renderize o conteiner aqui para que ele apareça por cima das imagens */}
+        {expandedContent}
         <ImageWithTitle
           image="images/performance.jpg"
           onClick={() => expandContent('Performance', 'Informações sobre Performance')}
         >
-          Performance
+          <TextBackground>Performance</TextBackground>
         </ImageWithTitle>
         <ImageWithTitle
           image="images/mountainbike.jpg"
           onClick={() => expandContent('Mountain Bike', 'Informações sobre Mountain Bike')}
         >
-          Mountain Bike
+          <TextBackground>Mountain Bike</TextBackground>
         </ImageWithTitle>
         <ImageWithTitle
           image="images/urbana.jpg"
           onClick={() => expandContent('Urbana', 'Informações sobre Urbana')}
         >
-          Urbana
+          <TextBackground>Urbana</TextBackground>
         </ImageWithTitle>
       </ImageContainer>
     </Container>
